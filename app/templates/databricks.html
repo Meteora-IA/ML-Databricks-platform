@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Databricks Fundamentals | Meteora IA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            background:#020617;
+            color:white;
+            display:flex;
+            height:100vh;
+            overflow:hidden;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar{
+            width:350px;
+            background:#0f172a;
+            padding:30px;
+            overflow-y:auto;
+            border-right:1px solid rgba(255,255,255,0.06);
+        }
+
+        .logo{
+            font-size:30px;
+            font-weight:800;
+            margin-bottom:35px;
+            background:linear-gradient(to right,#38bdf8,#8b5cf6);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        /* PROGRESS */
+
+        .progress-container{
+            margin-bottom:35px;
+        }
+
+        .progress-text{
+            margin-bottom:10px;
+            color:#94a3b8;
+            font-size:14px;
+        }
+
+        .progress-bar{
+            width:100%;
+            height:12px;
+            background:#1e293b;
+            border-radius:20px;
+            overflow:hidden;
+        }
+
+        .progress-fill{
+            width:0%;
+            height:100%;
+            background:linear-gradient(to right,#38bdf8,#8b5cf6);
+            transition:0.4s;
+        }
+
+        .progress-percent{
+            margin-top:10px;
+            color:#38bdf8;
+            font-weight:600;
+            font-size:14px;
+        }
+
+        /* MODULES */
+
+        .module{
+            background:#1e293b;
+            padding:20px;
+            border-radius:18px;
+            margin-bottom:20px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .module:hover{
+            background:#334155;
+            transform:translateY(-2px);
+        }
+
+        .module h3{
+            margin-bottom:10px;
+            font-size:18px;
+        }
+
+        .module p{
+            color:#94a3b8;
+            font-size:14px;
+            line-height:1.7;
+        }
+
+        /* CONTENT */
+
+        .content{
+            flex:1;
+            padding:40px;
+            overflow-y:auto;
+        }
+
+        .topbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:30px;
+        }
+
+        .course-info h1{
+            font-size:42px;
+            margin-bottom:15px;
+        }
+
+        .course-info p{
+            color:#94a3b8;
+            line-height:1.7;
+            max-width:800px;
+        }
+
+        .back-button{
+            padding:12px 20px;
+            border-radius:12px;
+            background:#ef4444;
+            color:white;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        /* VIDEO */
+
+        .video-container{
+            width:100%;
+            background:black;
+            border-radius:24px;
+            overflow:hidden;
+            margin-top:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        iframe{
+            width:100%;
+            height:700px;
+            border:none;
+        }
+
+        /* COURSE DETAILS */
+
+        .details{
+            margin-top:40px;
+            background:#0f172a;
+            padding:30px;
+            border-radius:24px;
+        }
+
+        .details h2{
+            margin-bottom:20px;
+        }
+
+        .details p{
+            color:#94a3b8;
+            line-height:1.8;
+        }
+
+        @media(max-width:1100px){
+
+            body{
+                flex-direction:column;
+                height:auto;
+            }
+
+            .sidebar{
+                width:100%;
+                height:auto;
+                border-right:none;
+                border-bottom:1px solid rgba(255,255,255,0.06);
+            }
+
+            iframe{
+                height:400px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            Meteora IA
+        </div>
+
+        <!-- PROGRESS -->
+
+        <div class="progress-container">
+
+            <div class="progress-text">
+                Progreso del Curso
+            </div>
+
+            <div class="progress-bar">
+
+                <div class="progress-fill"
+                     id="progressFill">
+                </div>
+
+            </div>
+
+            <div class="progress-percent"
+                 id="progressPercent">
+
+                0% completado
+
+            </div>
+
+        </div>
+
+        <!-- MODULE 1 -->
+
+        <div class="module"
+             id="module1"
+             onclick="completeModule(1, 'VIDEO_ID_1')">
+
+            <h3>
+                ⬜ Módulo 1 - Introducción a Databricks
+            </h3>
+
+            <p>
+                Conoce la arquitectura Lakehouse
+                y fundamentos de Databricks.
+            </p>
+
+        </div>
+
+        <!-- MODULE 2 -->
+
+        <div class="module"
+             id="module2"
+             onclick="completeModule(2, 'VIDEO_ID_2')">
+
+            <h3>
+                ⬜ Módulo 2 - Apache Spark
+            </h3>
+
+            <p>
+                Aprende DataFrames, transformations
+                y procesamiento distribuido.
+            </p>
+
+        </div>
+
+        <!-- MODULE 3 -->
+
+        <div class="module"
+             id="module3"
+             onclick="completeModule(3, 'VIDEO_ID_3')">
+
+            <h3>
+                ⬜ Módulo 3 - Delta Lake
+            </h3>
+
+            <p>
+                ACID Transactions, versionado
+                y arquitectura moderna de datos.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <div class="topbar">
+
+            <div class="course-info">
+
+                <h1>
+                    Databricks Fundamentals
+                </h1>
+
+                <p>
+                    Aprende Apache Spark, Delta Lake y Databricks
+                    desde cero con un enfoque empresarial y práctico
+                    orientado a Machine Learning Engineering y Data Engineering.
+                </p>
+
+            </div>
+
+            <a href="/dashboard" class="back-button">
+                Dashboard
+            </a>
+
+        </div>
+
+        <!-- VIDEO -->
+
+        <div class="video-container">
+
+            <iframe
+                id="courseVideo"
+                src="https://www.youtube.com/embed/VIDEO_ID_1?rel=0"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <!-- DETAILS -->
+
+        <div class="details">
+
+            <h2>
+                Sobre este curso
+            </h2>
+
+            <p>
+                Este programa está diseñado para ingenieros,
+                analistas y profesionales que desean dominar
+                Databricks y Apache Spark desde un enfoque práctico.
+                Aprenderás procesamiento distribuido, Delta Lake,
+                arquitectura Lakehouse y buenas prácticas utilizadas
+                en entornos empresariales reales.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const totalModules = 3;
+
+        function changeVideo(videoId){
+
+            document.getElementById("courseVideo").src =
+                `https://www.youtube.com/embed/${videoId}?rel=0`;
+
+        }
+
+        async function completeModule(moduleId, videoId){
+
+            changeVideo(videoId);
+
+            await fetch("/save-progress", {
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+
+                    course_name:"databricks",
+                    module_id:moduleId
+
+                })
+
+            });
+
+            loadProgress();
+
+        }
+
+        async function loadProgress(){
+
+            const response =
+                await fetch("/get-progress/databricks");
+
+            const completedModules =
+                await response.json();
+
+            let completed = 0;
+
+            for(let i = 1; i <= totalModules; i++){
+
+                const moduleElement =
+                    document.getElementById(`module${i}`);
+
+                const title =
+                    moduleElement.querySelector("h3");
+
+                if(completedModules.includes(i)){
+
+                    completed++;
+
+                    if(title.innerHTML.includes("⬜")){
+
+                        title.innerHTML =
+                            title.innerHTML.replace("⬜","✅");
+
+                    }
+
+                }
+
+            }
+
+            const percent =
+                Math.round((completed / totalModules) * 100);
+
+            document.getElementById("progressFill")
+                .style.width = percent + "%";
+
+            document.getElementById("progressPercent")
+                .innerHTML = percent + "% completado";
+
+        }
+
+        loadProgress();
+
+    </script>
+
+</body>
+
+</html>
