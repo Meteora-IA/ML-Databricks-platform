@@ -22,190 +22,378 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #020617;
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.15), transparent 35%),
+                #020617;
             color: white;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         .navbar {
             width: 100%;
-            padding: 20px 40px;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 22px 40px;
+            background: rgba(2, 6, 23, 0.75);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 999;
         }
 
         .logo {
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 800;
+            letter-spacing: -1px;
+
             background: linear-gradient(to right, #38bdf8, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .user-badge {
+            padding: 12px 18px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
         .logout {
             padding: 12px 22px;
-            border-radius: 14px;
-            text-decoration: none;
-            background: #ef4444;
-            color: white;
+            border-radius: 16px;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #f87171;
             font-weight: 600;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
         .logout:hover {
-            opacity: 0.9;
+            transform: translateY(-2px);
+            background: rgba(239, 68, 68, 0.2);
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1380px;
             margin: auto;
-            padding: 60px 30px;
+            padding: 60px 30px 80px;
         }
 
         .hero {
-            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+
+            background: linear-gradient(135deg,
+                    rgba(15, 23, 42, 0.95),
+                    rgba(30, 41, 59, 0.95));
+
+            border: 1px solid rgba(255, 255, 255, 0.06);
+
+            border-radius: 36px;
+            padding: 70px;
+
+            margin-bottom: 40px;
+
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+
+            background: rgba(56, 189, 248, 0.08);
+
+            top: -180px;
+            right: -120px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+
+            background: rgba(139, 92, 246, 0.10);
+
+            bottom: -160px;
+            left: -100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 52px;
-            margin-bottom: 15px;
+            font-size: 60px;
+            line-height: 1.1;
+            margin-bottom: 22px;
+            font-weight: 800;
+            max-width: 900px;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
+            max-width: 860px;
             color: #94a3b8;
-            font-size: 19px;
-            max-width: 800px;
-            line-height: 1.8;
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 45px;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 28px;
+
+            padding: 30px;
+
+            transition: 0.35s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.25);
+        }
+
+        .stat-card h3 {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .stat-card span {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .top-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 24px;
+            margin-bottom: 60px;
         }
 
         .panel {
-            background: #0f172a;
-            border-radius: 28px;
-            padding: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: 30px;
+            padding: 34px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+
+            backdrop-filter: blur(14px);
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.25);
         }
 
         .panel-title {
-            font-size: 22px;
-            margin-bottom: 20px;
+            font-size: 24px;
             font-weight: 700;
+            margin-bottom: 18px;
         }
 
         .progress-text {
             color: #94a3b8;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
 
         .progress-bar {
             width: 100%;
-            height: 14px;
+            height: 16px;
             background: #1e293b;
-            border-radius: 30px;
+            border-radius: 40px;
             overflow: hidden;
+            margin-bottom: 14px;
         }
 
         .progress-fill {
             width: 25%;
             height: 100%;
-            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            border-radius: 40px;
+
+            background: linear-gradient(to right,
+                    #38bdf8,
+                    #8b5cf6);
         }
 
         .progress-percent {
-            margin-top: 12px;
             color: #38bdf8;
             font-weight: 700;
+            font-size: 15px;
         }
 
         .subscription-status {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
+        }
+
+        .active-plan,
+        .inactive-plan {
+            padding: 18px;
+            border-radius: 18px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
         }
 
         .active-plan {
-            background: rgba(34,197,94,0.15);
-            border: 1px solid rgba(34,197,94,0.4);
-            color: #22c55e;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: 700;
-            text-align: center;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: #4ade80;
         }
 
         .inactive-plan {
-            background: rgba(239,68,68,0.15);
-            border: 1px solid rgba(239,68,68,0.4);
-            color: #ef4444;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: 700;
-            text-align: center;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #f87171;
         }
 
         .buy-button {
             border: none;
-            padding: 16px;
-            border-radius: 16px;
-            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            padding: 18px;
+            border-radius: 18px;
+
+            background: linear-gradient(to right,
+                    #38bdf8,
+                    #8b5cf6);
+
             color: white;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            transition: 0.3s;
+
+            transition: 0.3s ease;
+
+            box-shadow:
+                0 10px 25px rgba(56, 189, 248, 0.25);
         }
 
         .buy-button:hover {
             transform: translateY(-3px);
+            opacity: 0.95;
+        }
+
+        .courses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 28px;
         }
 
         .courses-title {
-            font-size: 34px;
-            margin-bottom: 30px;
+            font-size: 38px;
             font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .courses-subtitle {
+            color: #94a3b8;
+            font-size: 15px;
         }
 
         .courses {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 28px;
         }
 
         .card {
-            background: #0f172a;
-            padding: 32px;
-            border-radius: 28px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.35s;
             position: relative;
             overflow: hidden;
+
+            background: linear-gradient(180deg,
+                    rgba(15, 23, 42, 0.95),
+                    rgba(15, 23, 42, 0.80));
+
+            border-radius: 32px;
+            padding: 36px;
+
+            border: 1px solid rgba(255, 255, 255, 0.06);
+
+            transition: 0.35s ease;
+
+            min-height: 360px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.08);
+
+            top: -80px;
+            right: -80px;
         }
 
         .card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.25);
+
+            box-shadow:
+                0 14px 40px rgba(0, 0, 0, 0.35);
         }
 
         .badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(to right, #38bdf8, #8b5cf6);
-            padding: 8px 14px;
+            top: 22px;
+            right: 22px;
+
+            padding: 9px 16px;
             border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+
+            background: linear-gradient(to right,
+                    #38bdf8,
+                    #8b5cf6);
         }
 
         .locked-badge {
@@ -213,25 +401,40 @@
         }
 
         .card h2 {
-            margin-bottom: 18px;
-            font-size: 28px;
+            font-size: 30px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
         }
 
         .card p {
             color: #94a3b8;
-            line-height: 1.8;
-            margin-bottom: 28px;
+            line-height: 1.9;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 2;
         }
 
         .button {
-            display: inline-block;
-            padding: 14px 24px;
-            border-radius: 16px;
-            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 16px 24px;
+            border-radius: 18px;
+
+            background: linear-gradient(to right,
+                    #38bdf8,
+                    #8b5cf6);
+
             color: white;
-            text-decoration: none;
             font-weight: 700;
-            transition: 0.3s;
+
+            transition: 0.3s ease;
+
+            position: relative;
+            z-index: 2;
         }
 
         .button:hover {
@@ -243,43 +446,55 @@
             cursor: not-allowed;
         }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
+        @media(max-width: 950px) {
 
-        .stat-card {
-            background: #0f172a;
-            padding: 28px;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+            .hero {
+                padding: 45px 30px;
+            }
 
-        .stat-card h3 {
-            color: #94a3b8;
-            margin-bottom: 12px;
-        }
+            .hero h1 {
+                font-size: 42px;
+            }
 
-        .stat-card span {
-            font-size: 34px;
-            font-weight: 800;
-        }
-
-        @media(max-width: 900px){
-
-            .top-grid{
+            .top-grid {
                 grid-template-columns: 1fr;
             }
 
-            .navbar{
+            .navbar {
+                padding: 20px;
                 flex-direction: column;
-                gap: 20px;
+                gap: 18px;
             }
 
-            .hero h1{
-                font-size: 38px;
+            .nav-right {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .courses-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media(max-width: 640px) {
+
+            .container {
+                padding: 30px 18px 60px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .courses-title {
+                font-size: 30px;
+            }
+
+            .card {
+                min-height: auto;
             }
         }
     </style>
@@ -294,9 +509,17 @@
             Meteora IA
         </div>
 
-        <a href="/logout" class="logout">
-            Logout
-        </a>
+        <div class="nav-right">
+
+            <div class="user-badge">
+                {{ user }}
+            </div>
+
+            <a href="/logout" class="logout">
+                Logout
+            </a>
+
+        </div>
 
     </div>
 
@@ -304,21 +527,29 @@
 
         <div class="hero">
 
-            <h1>
-                Hola {{ user }} 👋
-            </h1>
+            <div class="hero-content">
 
-            <p>
-                Continúa desarrollando habilidades avanzadas en Machine Learning,
-                Databricks, Spark, MLflow y arquitecturas MLOps empresariales.
-            </p>
+                <h1>
+                    Plataforma Profesional de
+                    <span class="hero-gradient">
+                        Machine Learning & Databricks
+                    </span>
+                </h1>
+
+                <p>
+                    Continúa desarrollando habilidades avanzadas en Machine Learning,
+                    Apache Spark, MLflow, Data Engineering y arquitecturas MLOps
+                    empresariales con entrenamientos especializados de Meteora IA.
+                </p>
+
+            </div>
 
         </div>
 
         <div class="stats">
 
             <div class="stat-card">
-                <h3>Cursos</h3>
+                <h3>Cursos Disponibles</h3>
                 <span>3</span>
             </div>
 
@@ -328,7 +559,7 @@
             </div>
 
             <div class="stat-card">
-                <h3>Progreso</h3>
+                <h3>Progreso Total</h3>
                 <span>25%</span>
             </div>
 
@@ -343,13 +574,12 @@
                 </div>
 
                 <div class="progress-text">
-                    Continúa avanzando en tu capacitación.
+                    Continúa avanzando en tu ruta profesional de capacitación
+                    en Data & AI Engineering.
                 </div>
 
                 <div class="progress-bar">
-
                     <div class="progress-fill"></div>
-
                 </div>
 
                 <div class="progress-percent">
@@ -361,7 +591,7 @@
             <div class="panel">
 
                 <div class="panel-title">
-                    Suscripción
+                    Estado de Suscripción
                 </div>
 
                 <div class="subscription-status">
@@ -390,9 +620,19 @@
 
         </div>
 
-        <h2 class="courses-title">
-            Tus Cursos
-        </h2>
+        <div class="courses-header">
+
+            <div>
+                <h2 class="courses-title">
+                    Tus Cursos
+                </h2>
+
+                <div class="courses-subtitle">
+                    Capacitación avanzada para Data Engineers y ML Engineers
+                </div>
+            </div>
+
+        </div>
 
         <div class="courses">
 
@@ -408,15 +648,19 @@
                 </div>
                 {% endif %}
 
-                <h2>
-                    Databricks Fundamentals
-                </h2>
+                <div>
 
-                <p>
-                    Aprende Apache Spark, Delta Lake,
-                    Data Engineering y procesamiento distribuido
-                    con Databricks.
-                </p>
+                    <h2>
+                        Databricks Fundamentals
+                    </h2>
+
+                    <p>
+                        Aprende Apache Spark, Delta Lake,
+                        Data Engineering y procesamiento distribuido
+                        utilizando plataformas modernas de Databricks.
+                    </p>
+
+                </div>
 
                 {% if has_subscription %}
                 <a href="/course/databricks" class="button">
@@ -442,14 +686,19 @@
                 </div>
                 {% endif %}
 
-                <h2>
-                    Machine Learning Engineer
-                </h2>
+                <div>
 
-                <p>
-                    Construcción de modelos empresariales,
-                    Feature Engineering y pipelines ML.
-                </p>
+                    <h2>
+                        Machine Learning Engineer
+                    </h2>
+
+                    <p>
+                        Construcción de modelos empresariales,
+                        Feature Engineering y pipelines ML
+                        orientados a producción.
+                    </p>
+
+                </div>
 
                 {% if has_subscription %}
                 <a href="/course/ml-engineer" class="button">
@@ -475,14 +724,19 @@
                 </div>
                 {% endif %}
 
-                <h2>
-                    MLOps Platform Engineering
-                </h2>
+                <div>
 
-                <p>
-                    MLflow, CI/CD, deployment,
-                    monitoreo y arquitectura MLOps moderna.
-                </p>
+                    <h2>
+                        MLOps Platform Engineering
+                    </h2>
+
+                    <p>
+                        MLflow, CI/CD, deployment,
+                        monitoreo y arquitectura moderna
+                        de plataformas MLOps empresariales.
+                    </p>
+
+                </div>
 
                 {% if has_subscription %}
                 <a href="/course/mlops" class="button">
